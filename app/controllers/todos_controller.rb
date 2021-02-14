@@ -40,6 +40,14 @@ class TodosController < ApplicationController
   def index
     @todos = Todo.all
   end
+
+  def destroy
+    @todo = Todo.find(params[:id])
+    @todo.destroy
+    flash[:msg] = "TODOs nr. #{@todo.id} DELETED"
+    redirect_to action: "index"
+  end
+
   private
   def todo_params
     params.require(:todo).permit(:name, :description, :important, :done)
