@@ -1,0 +1,26 @@
+<h2>All  unfinished TODO's are here:</h2>
+
+<ul>
+  <% @todos.each do |t| %>
+  <li>
+    <% unless t.done %>
+      <%=t.name %>
+      <em property="italic">Is Important? </em>
+      <%=t.important %>
+    <% end %>
+  </li>
+  <% end %>
+</ul>
+
+<h2>Finished TODO`s go here:</h2>
+
+<ul>
+  <% @todos.each do |t| %>
+      <% if t.done %>
+      <li>
+        <%=t.name %>
+        <%=t.important %>
+      </li>
+      <% end %>
+  <% end %>
+</ul>

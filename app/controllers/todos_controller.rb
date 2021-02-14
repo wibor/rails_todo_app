@@ -9,7 +9,7 @@ class TodosController < ApplicationController
     @todo = Todo.new(todo_params)
     @todo.done = false
     if @todo.save
-      flash[:msg] = 'TODOs created successfully'
+      flash[:msg] = "TODOs nr. #{@todo.id} created successfully"
       redirect_to todo_path(@todo) #show
     else
       flash[:msg] = @todo.errors.full_messages[0]
@@ -18,11 +18,30 @@ class TodosController < ApplicationController
   end
 
   def show
-    @todos = Todo.all
+    @todo = Todo.find(params[:id])
   end
 
+  #GET
+  def edit
+    @todo = Todo.find(params[:id])
+  end
+
+  def update
+    @todo = Todo.find(params[:id])
+    if @todo.update(todo_params)
+      flash[:msg] = "TODOs nr. #{@todo.id} edited successfully"
+      redirect_to todo_path() #index #index
+    else
+      flash[:msg] = @todo.errors.full_messages[0]
+      render 'edit'
+    end
+  end
+
+  def index
+    @todos = Todo.all
+  end
   private
   def todo_params
-    params.require(:todo).permit(:name, :description, :important)
+    params.require(:todo).permit(:name, :description, :important, :done)
   end
 end

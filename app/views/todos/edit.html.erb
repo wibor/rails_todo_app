@@ -1,0 +1,28 @@
+<h2>Edit a TODO</h2>
+
+<% if @todo.errors.any? %>
+<% @todo.errors.full_messages.each do |m| %>
+<%= m %>
+<% end %>
+<% end %>
+<%= form_with model: @todo do |form| %>
+<p>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+</p>
+<p>
+    <%= form.label :descriptions %>
+    <%= form.text_area :description, size: "60x5" %>
+</p>
+<p>
+    <%= form.label :important %>
+    <%= form.check_box :important %>
+</p>
+  <p>
+    <%= form.label :done %>
+    <%= form.check_box :done %>
+  </p>
+
+
+  <%= form.submit %>
+<% end %>
