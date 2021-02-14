@@ -4,7 +4,8 @@
   <% @todos.each do |t| %>
   <li>
     <% unless t.done %>
-      <%=t.name %>
+      <%=t.id %>
+      <%= link_to t.name, edit_todo_path(t) %>
       <em property="italic">Is Important? </em>
       <%=t.important %>
     <% end %>
@@ -18,7 +19,7 @@
   <% @todos.each do |t| %>
       <% if t.done %>
       <li>
-        <%=t.name %>
+        <%= link_to t.name, todo_path(t) %>
         <%=t.important %>
       </li>
       <% end %>

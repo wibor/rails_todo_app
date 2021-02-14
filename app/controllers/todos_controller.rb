@@ -30,7 +30,7 @@ class TodosController < ApplicationController
     @todo = Todo.find(params[:id])
     if @todo.update(todo_params)
       flash[:msg] = "TODOs nr. #{@todo.id} edited successfully"
-      redirect_to todo_path() #index #index
+      redirect_to action: "index"
     else
       flash[:msg] = @todo.errors.full_messages[0]
       render 'edit'
