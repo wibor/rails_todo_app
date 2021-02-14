@@ -23,4 +23,5 @@
   </p>
 </ul>
 
-<%= link_to "Back to Index Page", todos_path %> | <%= link_to "Delete TODO", todo_path(@todo), method: "delete" %>
+<%= link_to "Back to Index Page", todos_path %> | <%= link_to "Delete TODO", todo_path(@todo), method: "delete",
+                                                              data: { confirm: "Are you sure?"} %>
